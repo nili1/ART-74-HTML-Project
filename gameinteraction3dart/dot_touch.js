@@ -4,9 +4,19 @@ var ballSize = 40;
 var score =0;
 var gameState= "L1";
 
-
+var img;  // declares an image variable
+var img2;
+var img3;
+function preload() {
+// preload() runs once, it may make you wait
+  img = loadImage('https://nili1.github.io/gameinteraction3dart/crosshairs.png');
+  img2 = loadImage('https://nili1.github.io/gameinteraction3dart/cod.jpg');
+  img3 = loadImage('https://nili1.github.io/gameinteraction3dart/cod2.jpg')
+  img4 = loadImage('https://nili1.github.io/gameinteraction3dart/cod3.jpg')
+  img5 = loadImage('https://nili1.github.io/gameinteraction3dart/cod4.jpg')
+}
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(960, 540);
   textAlign(CENTER);
   textSize(20);
 } // end setup
@@ -14,24 +24,28 @@ function setup() {
 
 function draw() {
   background(220);
+  image(img2, 0, 0, 960, 540);
   if (gameState=="L1"){
   levelOne();
   } 
   if (gameState=="L2"){
-   levelTwo(); 
+   levelTwo();
   }
   if (gameState=="L3"){
    levelThree(); 
   }
+  if (gameState=="L4"){
+   levelFour(); 
+  }
   
-  text(("Score: " + score), width/2, 40);
+  text(("Objective: Hit the Targets! Score: " + score), width/2, 40);
   
 
 } // end draw
 
 
 function levelOne(){
-  text("Level 1", width/2, height-20);
+  text("Mission 1", width/2, height = 20);
   var distToBall= dist(ballx, bally, mouseX, mouseY);
   if (distToBall <ballSize/2){
     ballx = random(width);
@@ -44,14 +58,14 @@ function levelOne(){
  gameState= "L2";
   }
   
-  ellipse(ballx, bally, ballSize, ballSize);
-  line(ballx, bally, mouseX, mouseY);
-  
+  //ellipse(ballx, bally, ballSize, ballSize);
+image(img, ballx, bally, ballSize, ballSize);
 } // end level one
 
 function levelTwo(){
   background(200, 100, 0);
-  text("Level 2", width/2, height-20);
+  image(img4, 0, 0, 960, 540);
+  text("Mission 2", width/2, height = 20);
   var distToBall= dist(ballx, bally, mouseX, mouseY);
   if (distToBall <ballSize/2){
     ballx = random(width);
@@ -65,26 +79,33 @@ function levelTwo(){
   }
   
 //  line(ballx, bally, mouseX, mouseY);
-  ellipse(ballx, bally, ballSize, ballSize);
+  image(img, ballx, bally, ballSize, ballSize);
 } // end level two
 
 function levelThree(){
     background(200, 100, 2000);
-  text("Level 3", width/2, height-20);
+  image(img5, 0, 0, 960, 540);
+  text("Final Mission", width/2, height = 20);
   var distToBall= dist(ballx, bally, mouseX, mouseY);
   if (distToBall <ballSize/2){
     ballx = random(width);
     bally= random(height);
-    ballSize=ballSize -1;
     score= score +1;
   }
-  if(score>15){
+  if(score>14){
 // level 4
 //   gameState = "L4";
-   
+   gameState = "L4"
 
   }
   
 //  line(ballx, bally, mouseX, mouseY);
-  ellipse(ballx, bally, ballSize, ballSize);
+  image(img, ballx, bally, ballSize, ballSize);
 } // end level thre
+
+function levelFour(){
+    background(200, 100, 2000);
+  image(img3, 0, 0, 960, 540);
+  text("Game Over", width/2, height = 20);
+  text("Objective Complete!", width/2, height = 65);
+  }
